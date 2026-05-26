@@ -9,9 +9,9 @@ npm run dev
 ## GitHub Pages公開
 このリポジトリ名 `tca_sequence_game` に合わせて `vite.config.ts` の `base` は `/tca_sequence_game/` に設定済み。
 
-```bash
-npm run deploy
-```
+GitHub Pages は Actions で `dist` をビルドして公開する。
+
+GitHub の `Settings` -> `Pages` で `Build and deployment` の `Source` を `GitHub Actions` にする。
 
 公開URL:
 `https://yuubinnkyoku.github.io/tca_sequence_game/`
