@@ -11,7 +11,15 @@ type CellState = 'found' | 'miss' | 'hint' | 'idle';
 const fallback =
   'ATGGCTTCAACCGGATCTCAAACTGGTTCAGGTAACTCATGCTTCACTGATGGAATCAAGTCACTGTCAAGTCC';
 
-const region = '1:2300000..2300400:1';
+const sequenceWindowSize = 400;
+const humanChr1Length = 248_956_422;
+
+function createRandomRegion(): string {
+  const maxStart = humanChr1Length - sequenceWindowSize;
+  const start = Math.floor(Math.random() * maxStart) + 1;
+  const end = start + sequenceWindowSize;
+  return `1:${start}..${end}:1`;
+}
 
 async function fetchEnsemblSequence(species: string, targetRegion: string): Promise<SequencePayload> {
   const endpoint = `https://rest.ensembl.org/sequence/region/${species}/${targetRegion}?content-type=application/json`;
@@ -37,6 +45,7 @@ function getCellState(index: number, hits: number[], misses: number[], activeHin
 
 export function App() {
   const [sequence, setSequence] = useState(fallback);
+  const [region, setRegion] = useState(createRandomRegion);
   const [source, setSource] = useState('Training sequence');
   const [message, setMessage] = useState('TCA の先頭マスをクリックしてコンボを見つけろ');
   const [hits, setHits] = useState<number[]>([]);
@@ -62,7 +71,9 @@ export function App() {
     try {
       setIsLoading(true);
       setMessage('Ensembl から実データをロード中...');
-      const data = await fetchEnsemblSequence('human', region);
+      const nextRegion = createRandomRegion();
+      setRegion(nextRegion);
+      const data = await fetchEnsemblSequence('human', nextRegion);
       const cleaned = data.seq.toUpperCase().replace(/[^ACGT]/g, '');
       resetRound(cleaned.length > 0 ? cleaned : fallback, `Ensembl human ${data.id}`);
       setMessage(`実データ投入: ${data.id} / ${cleaned.length} 塩基`);
