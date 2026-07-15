@@ -1,0 +1,586 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - link "TCA Finder home" [ref=e5] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=e10]:
+        - strong [ref=e11]: TCA Finder
+        - generic [ref=e12]: Genome pattern lab
+    - generic [ref=e13]:
+      - generic [ref=e14]: Personal best
+      - strong [ref=e15]: "0"
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - paragraph [ref=e18]: Sequence challenge · 01
+      - heading [level=1] [ref=e20]:
+        - text: Find the pattern.
+        - emphasis [ref=e21]: Read the code.
+      - paragraph [ref=e22]:
+        - text: DNA 配列に隠れた
+        - code [ref=e23]: TCA
+        - text: を見つける、短くて奥深いパターン探索ゲーム。
+    - generic "target pattern" [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: Target motif
+        - generic [ref=e27]: LIVE
+      - generic "T C A" [ref=e28]:
+        - generic [ref=e29]: T
+        - generic [ref=e30]: →
+        - generic [ref=e31]: C
+        - generic [ref=e32]: →
+        - generic [ref=e33]: A
+      - paragraph [ref=e34]:
+        - text: 先頭の
+        - strong [ref=e35]: T
+        - text: をクリック
+  - region "game settings" [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]: Difficulty
+      - generic [ref=e39]:
+        - button "Starter 96 bp" [ref=e40] [cursor=pointer]:
+          - text: Starter
+          - generic [ref=e41]: 96 bp
+        - button "Standard 160 bp" [ref=e42] [cursor=pointer]:
+          - text: Standard
+          - generic [ref=e43]: 160 bp
+        - button "Expert 240 bp" [ref=e44] [cursor=pointer]:
+          - text: Expert
+          - generic [ref=e45]: 240 bp
+    - generic [ref=e46]:
+      - button "配列を入力" [ref=e47] [cursor=pointer]
+      - button "実ゲノムで開始" [ref=e51] [cursor=pointer]
+  - generic [ref=e54]:
+    - generic [ref=e55]:
+      - generic [ref=e58]:
+        - generic [ref=e59]: TRAINING
+        - strong [ref=e60]: Practice dataset
+      - generic [ref=e61]:
+        - button "Hint H" [ref=e62] [cursor=pointer]:
+          - generic [ref=e66]: Hint
+          - generic [ref=e67]: H
+        - button "Reset R" [ref=e68] [cursor=pointer]:
+          - generic [ref=e72]: Reset
+          - generic [ref=e73]: R
+    - generic "game status" [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]: Score
+        - strong [ref=e77]: "0"
+        - generic [ref=e78]: +140 / hit
+      - generic [ref=e79]:
+        - generic [ref=e80]: Progress
+        - strong [ref=e81]:
+          - text: "0"
+          - generic [ref=e82]: / 3
+      - generic [ref=e84]:
+        - generic [ref=e85]: Streak
+        - strong [ref=e86]: ×0
+        - generic [ref=e87]: best ×0
+      - generic [ref=e88]:
+        - generic [ref=e89]: Time
+        - strong [ref=e90]: 00:00
+        - generic [ref=e91]: 160 base pairs
+      - generic [ref=e92]:
+        - generic [ref=e93]: Lives
+        - generic "5 lives remaining" [ref=e94]
+        - generic [ref=e110]: 0 misses
+    - status [ref=e111]:
+      - paragraph [ref=e116]: TCA の先頭を探してクリックしよう
+      - strong [ref=e117]: 0%
+    - generic [ref=e118]:
+      - generic [ref=e119]:
+        - generic [ref=e120]: 5′
+        - generic [ref=e122]: 3′
+      - generic "DNA sequence" [ref=e123]:
+        - button "index 0, Adenine, idle" [ref=e124] [cursor=pointer]:
+          - generic [ref=e125]: A
+          - generic [ref=e126]: "0"
+        - button "index 1, Cytosine, idle" [ref=e127] [cursor=pointer]:
+          - generic [ref=e128]: C
+          - generic [ref=e129]: "1"
+        - button "index 2, Guanine, idle" [ref=e130] [cursor=pointer]:
+          - generic [ref=e131]: G
+          - generic [ref=e132]: "2"
+        - button "index 3, Thymine, idle" [ref=e133] [cursor=pointer]:
+          - generic [ref=e134]: T
+          - generic [ref=e135]: "3"
+        - button "index 4, Adenine, idle" [ref=e136] [cursor=pointer]:
+          - generic [ref=e137]: A
+          - generic [ref=e138]: "4"
+        - button "index 5, Guanine, idle" [ref=e139] [cursor=pointer]:
+          - generic [ref=e140]: G
+          - generic [ref=e141]: "5"
+        - button "index 6, Thymine, idle" [ref=e142] [cursor=pointer]:
+          - generic [ref=e143]: T
+          - generic [ref=e144]: "6"
+        - button "index 7, Adenine, idle" [ref=e145] [cursor=pointer]:
+          - generic [ref=e146]: A
+          - generic [ref=e147]: "7"
+        - button "index 8, Cytosine, idle" [ref=e148] [cursor=pointer]:
+          - generic [ref=e149]: C
+          - generic [ref=e150]: "8"
+        - button "index 9, Cytosine, idle" [ref=e151] [cursor=pointer]:
+          - generic [ref=e152]: C
+          - generic [ref=e153]: "9"
+        - button "index 10, Thymine, idle" [ref=e154] [cursor=pointer]:
+          - generic [ref=e155]: T
+          - generic [ref=e156]: "10"
+        - button "index 11, Thymine, idle" [ref=e157] [cursor=pointer]:
+          - generic [ref=e158]: T
+          - generic [ref=e159]: "11"
+        - button "index 12, Thymine, idle" [ref=e160] [cursor=pointer]:
+          - generic [ref=e161]: T
+          - generic [ref=e162]: "12"
+        - button "index 13, Cytosine, idle" [ref=e163] [cursor=pointer]:
+          - generic [ref=e164]: C
+          - generic [ref=e165]: "13"
+        - button "index 14, Thymine, idle" [ref=e166] [cursor=pointer]:
+          - generic [ref=e167]: T
+          - generic [ref=e168]: "14"
+        - button "index 15, Guanine, idle" [ref=e169] [cursor=pointer]:
+          - generic [ref=e170]: G
+          - generic [ref=e171]: "15"
+        - button "index 16, Thymine, idle" [ref=e172] [cursor=pointer]:
+          - generic [ref=e173]: T
+          - generic [ref=e174]: "16"
+        - button "index 17, Adenine, idle" [ref=e175] [cursor=pointer]:
+          - generic [ref=e176]: A
+          - generic [ref=e177]: "17"
+        - button "index 18, Adenine, idle" [ref=e178] [cursor=pointer]:
+          - generic [ref=e179]: A
+          - generic [ref=e180]: "18"
+        - button "index 19, Guanine, idle" [ref=e181] [cursor=pointer]:
+          - generic [ref=e182]: G
+          - generic [ref=e183]: "19"
+        - button "index 20, Guanine, idle" [ref=e184] [cursor=pointer]:
+          - generic [ref=e185]: G
+          - generic [ref=e186]: "20"
+        - button "index 21, Cytosine, idle" [ref=e187] [cursor=pointer]:
+          - generic [ref=e188]: C
+          - generic [ref=e189]: "21"
+        - button "index 22, Thymine, idle" [ref=e190] [cursor=pointer]:
+          - generic [ref=e191]: T
+          - generic [ref=e192]: "22"
+        - button "index 23, Guanine, idle" [ref=e193] [cursor=pointer]:
+          - generic [ref=e194]: G
+          - generic [ref=e195]: "23"
+        - button "index 24, Cytosine, idle" [ref=e196] [cursor=pointer]:
+          - generic [ref=e197]: C
+          - generic [ref=e198]: "24"
+        - button "index 25, Thymine, idle" [ref=e199] [cursor=pointer]:
+          - generic [ref=e200]: T
+          - generic [ref=e201]: "25"
+        - button "index 26, Cytosine, idle" [ref=e202] [cursor=pointer]:
+          - generic [ref=e203]: C
+          - generic [ref=e204]: "26"
+        - button "index 27, Adenine, idle" [ref=e205] [cursor=pointer]:
+          - generic [ref=e206]: A
+          - generic [ref=e207]: "27"
+        - button "index 28, Cytosine, idle" [ref=e208] [cursor=pointer]:
+          - generic [ref=e209]: C
+          - generic [ref=e210]: "28"
+        - button "index 29, Cytosine, idle" [ref=e211] [cursor=pointer]:
+          - generic [ref=e212]: C
+          - generic [ref=e213]: "29"
+        - button "index 30, Cytosine, idle" [ref=e214] [cursor=pointer]:
+          - generic [ref=e215]: C
+          - generic [ref=e216]: "30"
+        - button "index 31, Cytosine, idle" [ref=e217] [cursor=pointer]:
+          - generic [ref=e218]: C
+          - generic [ref=e219]: "31"
+        - button "index 32, Adenine, idle" [ref=e220] [cursor=pointer]:
+          - generic [ref=e221]: A
+          - generic [ref=e222]: "32"
+        - button "index 33, Cytosine, idle" [ref=e223] [cursor=pointer]:
+          - generic [ref=e224]: C
+          - generic [ref=e225]: "33"
+        - button "index 34, Guanine, idle" [ref=e226] [cursor=pointer]:
+          - generic [ref=e227]: G
+          - generic [ref=e228]: "34"
+        - button "index 35, Guanine, idle" [ref=e229] [cursor=pointer]:
+          - generic [ref=e230]: G
+          - generic [ref=e231]: "35"
+        - button "index 36, Adenine, idle" [ref=e232] [cursor=pointer]:
+          - generic [ref=e233]: A
+          - generic [ref=e234]: "36"
+        - button "index 37, Cytosine, idle" [ref=e235] [cursor=pointer]:
+          - generic [ref=e236]: C
+          - generic [ref=e237]: "37"
+        - button "index 38, Adenine, idle" [ref=e238] [cursor=pointer]:
+          - generic [ref=e239]: A
+          - generic [ref=e240]: "38"
+        - button "index 39, Cytosine, idle" [ref=e241] [cursor=pointer]:
+          - generic [ref=e242]: C
+          - generic [ref=e243]: "39"
+        - button "index 40, Adenine, idle" [ref=e244] [cursor=pointer]:
+          - generic [ref=e245]: A
+          - generic [ref=e246]: "40"
+        - button "index 41, Adenine, idle" [ref=e247] [cursor=pointer]:
+          - generic [ref=e248]: A
+          - generic [ref=e249]: "41"
+        - button "index 42, Guanine, idle" [ref=e250] [cursor=pointer]:
+          - generic [ref=e251]: G
+          - generic [ref=e252]: "42"
+        - button "index 43, Adenine, idle" [ref=e253] [cursor=pointer]:
+          - generic [ref=e254]: A
+          - generic [ref=e255]: "43"
+        - button "index 44, Cytosine, idle" [ref=e256] [cursor=pointer]:
+          - generic [ref=e257]: C
+          - generic [ref=e258]: "44"
+        - button "index 45, Cytosine, idle" [ref=e259] [cursor=pointer]:
+          - generic [ref=e260]: C
+          - generic [ref=e261]: "45"
+        - button "index 46, Thymine, idle" [ref=e262] [cursor=pointer]:
+          - generic [ref=e263]: T
+          - generic [ref=e264]: "46"
+        - button "index 47, Thymine, idle" [ref=e265] [cursor=pointer]:
+          - generic [ref=e266]: T
+          - generic [ref=e267]: "47"
+        - button "index 48, Thymine, idle" [ref=e268] [cursor=pointer]:
+          - generic [ref=e269]: T
+          - generic [ref=e270]: "48"
+        - button "index 49, Guanine, idle" [ref=e271] [cursor=pointer]:
+          - generic [ref=e272]: G
+          - generic [ref=e273]: "49"
+        - button "index 50, Thymine, idle" [ref=e274] [cursor=pointer]:
+          - generic [ref=e275]: T
+          - generic [ref=e276]: "50"
+        - button "index 51, Thymine, idle" [ref=e277] [cursor=pointer]:
+          - generic [ref=e278]: T
+          - generic [ref=e279]: "51"
+        - button "index 52, Guanine, idle" [ref=e280] [cursor=pointer]:
+          - generic [ref=e281]: G
+          - generic [ref=e282]: "52"
+        - button "index 53, Guanine, idle" [ref=e283] [cursor=pointer]:
+          - generic [ref=e284]: G
+          - generic [ref=e285]: "53"
+        - button "index 54, Thymine, idle" [ref=e286] [cursor=pointer]:
+          - generic [ref=e287]: T
+          - generic [ref=e288]: "54"
+        - button "index 55, Thymine, idle" [ref=e289] [cursor=pointer]:
+          - generic [ref=e290]: T
+          - generic [ref=e291]: "55"
+        - button "index 56, Cytosine, idle" [ref=e292] [cursor=pointer]:
+          - generic [ref=e293]: C
+          - generic [ref=e294]: "56"
+        - button "index 57, Guanine, idle" [ref=e295] [cursor=pointer]:
+          - generic [ref=e296]: G
+          - generic [ref=e297]: "57"
+        - button "index 58, Guanine, idle" [ref=e298] [cursor=pointer]:
+          - generic [ref=e299]: G
+          - generic [ref=e300]: "58"
+        - button "index 59, Adenine, idle" [ref=e301] [cursor=pointer]:
+          - generic [ref=e302]: A
+          - generic [ref=e303]: "59"
+        - button "index 60, Adenine, idle" [ref=e304] [cursor=pointer]:
+          - generic [ref=e305]: A
+          - generic [ref=e306]: "60"
+        - button "index 61, Guanine, idle" [ref=e307] [cursor=pointer]:
+          - generic [ref=e308]: G
+          - generic [ref=e309]: "61"
+        - button "index 62, Cytosine, idle" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: C
+          - generic [ref=e312]: "62"
+        - button "index 63, Adenine, idle" [ref=e313] [cursor=pointer]:
+          - generic [ref=e314]: A
+          - generic [ref=e315]: "63"
+        - button "index 64, Thymine, idle" [ref=e316] [cursor=pointer]:
+          - generic [ref=e317]: T
+          - generic [ref=e318]: "64"
+        - button "index 65, Adenine, idle" [ref=e319] [cursor=pointer]:
+          - generic [ref=e320]: A
+          - generic [ref=e321]: "65"
+        - button "index 66, Adenine, idle" [ref=e322] [cursor=pointer]:
+          - generic [ref=e323]: A
+          - generic [ref=e324]: "66"
+        - button "index 67, Adenine, idle" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: A
+          - generic [ref=e327]: "67"
+        - button "index 68, Guanine, idle" [ref=e328] [cursor=pointer]:
+          - generic [ref=e329]: G
+          - generic [ref=e330]: "68"
+        - button "index 69, Thymine, idle" [ref=e331] [cursor=pointer]:
+          - generic [ref=e332]: T
+          - generic [ref=e333]: "69"
+        - button "index 70, Cytosine, idle" [ref=e334] [cursor=pointer]:
+          - generic [ref=e335]: C
+          - generic [ref=e336]: "70"
+        - button "index 71, Cytosine, idle" [ref=e337] [cursor=pointer]:
+          - generic [ref=e338]: C
+          - generic [ref=e339]: "71"
+        - button "index 72, Cytosine, idle" [ref=e340] [cursor=pointer]:
+          - generic [ref=e341]: C
+          - generic [ref=e342]: "72"
+        - button "index 73, Guanine, idle" [ref=e343] [cursor=pointer]:
+          - generic [ref=e344]: G
+          - generic [ref=e345]: "73"
+        - button "index 74, Cytosine, idle" [ref=e346] [cursor=pointer]:
+          - generic [ref=e347]: C
+          - generic [ref=e348]: "74"
+        - button "index 75, Thymine, idle" [ref=e349] [cursor=pointer]:
+          - generic [ref=e350]: T
+          - generic [ref=e351]: "75"
+        - button "index 76, Adenine, idle" [ref=e352] [cursor=pointer]:
+          - generic [ref=e353]: A
+          - generic [ref=e354]: "76"
+        - button "index 77, Thymine, idle" [ref=e355] [cursor=pointer]:
+          - generic [ref=e356]: T
+          - generic [ref=e357]: "77"
+        - button "index 78, Guanine, idle" [ref=e358] [cursor=pointer]:
+          - generic [ref=e359]: G
+          - generic [ref=e360]: "78"
+        - button "index 79, Adenine, idle" [ref=e361] [cursor=pointer]:
+          - generic [ref=e362]: A
+          - generic [ref=e363]: "79"
+        - button "index 80, Thymine, idle" [ref=e364] [cursor=pointer]:
+          - generic [ref=e365]: T
+          - generic [ref=e366]: "80"
+        - button "index 81, Thymine, idle" [ref=e367] [cursor=pointer]:
+          - generic [ref=e368]: T
+          - generic [ref=e369]: "81"
+        - button "index 82, Cytosine, idle" [ref=e370] [cursor=pointer]:
+          - generic [ref=e371]: C
+          - generic [ref=e372]: "82"
+        - button "index 83, Adenine, idle" [ref=e373] [cursor=pointer]:
+          - generic [ref=e374]: A
+          - generic [ref=e375]: "83"
+        - button "index 84, Cytosine, idle" [ref=e376] [cursor=pointer]:
+          - generic [ref=e377]: C
+          - generic [ref=e378]: "84"
+        - button "index 85, Guanine, idle" [ref=e379] [cursor=pointer]:
+          - generic [ref=e380]: G
+          - generic [ref=e381]: "85"
+        - button "index 86, Cytosine, idle" [ref=e382] [cursor=pointer]:
+          - generic [ref=e383]: C
+          - generic [ref=e384]: "86"
+        - button "index 87, Thymine, idle" [ref=e385] [cursor=pointer]:
+          - generic [ref=e386]: T
+          - generic [ref=e387]: "87"
+        - button "index 88, Adenine, idle" [ref=e388] [cursor=pointer]:
+          - generic [ref=e389]: A
+          - generic [ref=e390]: "88"
+        - button "index 89, Adenine, idle" [ref=e391] [cursor=pointer]:
+          - generic [ref=e392]: A
+          - generic [ref=e393]: "89"
+        - button "index 90, Adenine, idle" [ref=e394] [cursor=pointer]:
+          - generic [ref=e395]: A
+          - generic [ref=e396]: "90"
+        - button "index 91, Adenine, idle" [ref=e397] [cursor=pointer]:
+          - generic [ref=e398]: A
+          - generic [ref=e399]: "91"
+        - button "index 92, Guanine, idle" [ref=e400] [cursor=pointer]:
+          - generic [ref=e401]: G
+          - generic [ref=e402]: "92"
+        - button "index 93, Cytosine, idle" [ref=e403] [cursor=pointer]:
+          - generic [ref=e404]: C
+          - generic [ref=e405]: "93"
+        - button "index 94, Thymine, idle" [ref=e406] [cursor=pointer]:
+          - generic [ref=e407]: T
+          - generic [ref=e408]: "94"
+        - button "index 95, Adenine, idle" [ref=e409] [cursor=pointer]:
+          - generic [ref=e410]: A
+          - generic [ref=e411]: "95"
+        - button "index 96, Guanine, idle" [ref=e412] [cursor=pointer]:
+          - generic [ref=e413]: G
+          - generic [ref=e414]: "96"
+        - button "index 97, Cytosine, idle" [ref=e415] [cursor=pointer]:
+          - generic [ref=e416]: C
+          - generic [ref=e417]: "97"
+        - button "index 98, Cytosine, idle" [ref=e418] [cursor=pointer]:
+          - generic [ref=e419]: C
+          - generic [ref=e420]: "98"
+        - button "index 99, Cytosine, idle" [ref=e421] [cursor=pointer]:
+          - generic [ref=e422]: C
+          - generic [ref=e423]: "99"
+        - button "index 100, Guanine, idle" [ref=e424] [cursor=pointer]:
+          - generic [ref=e425]: G
+          - generic [ref=e426]: "100"
+        - button "index 101, Thymine, idle" [ref=e427] [cursor=pointer]:
+          - generic [ref=e428]: T
+          - generic [ref=e429]: "101"
+        - button "index 102, Thymine, idle" [ref=e430] [cursor=pointer]:
+          - generic [ref=e431]: T
+          - generic [ref=e432]: "102"
+        - button "index 103, Guanine, idle" [ref=e433] [cursor=pointer]:
+          - generic [ref=e434]: G
+          - generic [ref=e435]: "103"
+        - button "index 104, Adenine, idle" [ref=e436] [cursor=pointer]:
+          - generic [ref=e437]: A
+          - generic [ref=e438]: "104"
+        - button "index 105, Adenine, idle" [ref=e439] [cursor=pointer]:
+          - generic [ref=e440]: A
+          - generic [ref=e441]: "105"
+        - button "index 106, Thymine, idle" [ref=e442] [cursor=pointer]:
+          - generic [ref=e443]: T
+          - generic [ref=e444]: "106"
+        - button "index 107, Adenine, idle" [ref=e445] [cursor=pointer]:
+          - generic [ref=e446]: A
+          - generic [ref=e447]: "107"
+        - button "index 108, Guanine, idle" [ref=e448] [cursor=pointer]:
+          - generic [ref=e449]: G
+          - generic [ref=e450]: "108"
+        - button "index 109, Adenine, idle" [ref=e451] [cursor=pointer]:
+          - generic [ref=e452]: A
+          - generic [ref=e453]: "109"
+        - button "index 110, Guanine, idle" [ref=e454] [cursor=pointer]:
+          - generic [ref=e455]: G
+          - generic [ref=e456]: "110"
+        - button "index 111, Guanine, idle" [ref=e457] [cursor=pointer]:
+          - generic [ref=e458]: G
+          - generic [ref=e459]: "111"
+        - button "index 112, Guanine, idle" [ref=e460] [cursor=pointer]:
+          - generic [ref=e461]: G
+          - generic [ref=e462]: "112"
+        - button "index 113, Adenine, idle" [ref=e463] [cursor=pointer]:
+          - generic [ref=e464]: A
+          - generic [ref=e465]: "113"
+        - button "index 114, Cytosine, idle" [ref=e466] [cursor=pointer]:
+          - generic [ref=e467]: C
+          - generic [ref=e468]: "114"
+        - button "index 115, Guanine, idle" [ref=e469] [cursor=pointer]:
+          - generic [ref=e470]: G
+          - generic [ref=e471]: "115"
+        - button "index 116, Cytosine, idle" [ref=e472] [cursor=pointer]:
+          - generic [ref=e473]: C
+          - generic [ref=e474]: "116"
+        - button "index 117, Adenine, idle" [ref=e475] [cursor=pointer]:
+          - generic [ref=e476]: A
+          - generic [ref=e477]: "117"
+        - button "index 118, Adenine, idle" [ref=e478] [cursor=pointer]:
+          - generic [ref=e479]: A
+          - generic [ref=e480]: "118"
+        - button "index 119, Thymine, idle" [ref=e481] [cursor=pointer]:
+          - generic [ref=e482]: T
+          - generic [ref=e483]: "119"
+        - button "index 120, Adenine, idle" [ref=e484] [cursor=pointer]:
+          - generic [ref=e485]: A
+          - generic [ref=e486]: "120"
+        - button "index 121, Cytosine, idle" [ref=e487] [cursor=pointer]:
+          - generic [ref=e488]: C
+          - generic [ref=e489]: "121"
+        - button "index 122, Adenine, idle" [ref=e490] [cursor=pointer]:
+          - generic [ref=e491]: A
+          - generic [ref=e492]: "122"
+        - button "index 123, Thymine, idle" [ref=e493] [cursor=pointer]:
+          - generic [ref=e494]: T
+          - generic [ref=e495]: "123"
+        - button "index 124, Adenine, idle" [ref=e496] [cursor=pointer]:
+          - generic [ref=e497]: A
+          - generic [ref=e498]: "124"
+        - button "index 125, Cytosine, idle" [ref=e499] [cursor=pointer]:
+          - generic [ref=e500]: C
+          - generic [ref=e501]: "125"
+        - button "index 126, Adenine, idle" [ref=e502] [cursor=pointer]:
+          - generic [ref=e503]: A
+          - generic [ref=e504]: "126"
+        - button "index 127, Adenine, idle" [ref=e505] [cursor=pointer]:
+          - generic [ref=e506]: A
+          - generic [ref=e507]: "127"
+        - button "index 128, Guanine, idle" [ref=e508] [cursor=pointer]:
+          - generic [ref=e509]: G
+          - generic [ref=e510]: "128"
+        - button "index 129, Thymine, idle" [ref=e511] [cursor=pointer]:
+          - generic [ref=e512]: T
+          - generic [ref=e513]: "129"
+        - button "index 130, Guanine, idle" [ref=e514] [cursor=pointer]:
+          - generic [ref=e515]: G
+          - generic [ref=e516]: "130"
+        - button "index 131, Thymine, idle" [ref=e517] [cursor=pointer]:
+          - generic [ref=e518]: T
+          - generic [ref=e519]: "131"
+        - button "index 132, Cytosine, idle" [ref=e520] [cursor=pointer]:
+          - generic [ref=e521]: C
+          - generic [ref=e522]: "132"
+        - button "index 133, Adenine, idle" [ref=e523] [cursor=pointer]:
+          - generic [ref=e524]: A
+          - generic [ref=e525]: "133"
+        - button "index 134, Adenine, idle" [ref=e526] [cursor=pointer]:
+          - generic [ref=e527]: A
+          - generic [ref=e528]: "134"
+        - button "index 135, Guanine, idle" [ref=e529] [cursor=pointer]:
+          - generic [ref=e530]: G
+          - generic [ref=e531]: "135"
+        - button "index 136, Adenine, idle" [ref=e532] [cursor=pointer]:
+          - generic [ref=e533]: A
+          - generic [ref=e534]: "136"
+        - button "index 137, Adenine, idle" [ref=e535] [cursor=pointer]:
+          - generic [ref=e536]: A
+          - generic [ref=e537]: "137"
+        - button "index 138, Cytosine, idle" [ref=e538] [cursor=pointer]:
+          - generic [ref=e539]: C
+          - generic [ref=e540]: "138"
+        - button "index 139, Guanine, idle" [ref=e541] [cursor=pointer]:
+          - generic [ref=e542]: G
+          - generic [ref=e543]: "139"
+        - button "index 140, Thymine, idle" [ref=e544] [cursor=pointer]:
+          - generic [ref=e545]: T
+          - generic [ref=e546]: "140"
+        - button "index 141, Adenine, idle" [ref=e547] [cursor=pointer]:
+          - generic [ref=e548]: A
+          - generic [ref=e549]: "141"
+        - button "index 142, Cytosine, idle" [ref=e550] [cursor=pointer]:
+          - generic [ref=e551]: C
+          - generic [ref=e552]: "142"
+        - button "index 143, Cytosine, idle" [ref=e553] [cursor=pointer]:
+          - generic [ref=e554]: C
+          - generic [ref=e555]: "143"
+        - button "index 144, Cytosine, idle" [ref=e556] [cursor=pointer]:
+          - generic [ref=e557]: C
+          - generic [ref=e558]: "144"
+        - button "index 145, Guanine, idle" [ref=e559] [cursor=pointer]:
+          - generic [ref=e560]: G
+          - generic [ref=e561]: "145"
+        - button "index 146, Adenine, idle" [ref=e562] [cursor=pointer]:
+          - generic [ref=e563]: A
+          - generic [ref=e564]: "146"
+        - button "index 147, Cytosine, idle" [ref=e565] [cursor=pointer]:
+          - generic [ref=e566]: C
+          - generic [ref=e567]: "147"
+        - button "index 148, Guanine, idle" [ref=e568] [cursor=pointer]:
+          - generic [ref=e569]: G
+          - generic [ref=e570]: "148"
+        - button "index 149, Guanine, idle" [ref=e571] [cursor=pointer]:
+          - generic [ref=e572]: G
+          - generic [ref=e573]: "149"
+        - button "index 150, Adenine, idle" [ref=e574] [cursor=pointer]:
+          - generic [ref=e575]: A
+          - generic [ref=e576]: "150"
+        - button "index 151, Adenine, idle" [ref=e577] [cursor=pointer]:
+          - generic [ref=e578]: A
+          - generic [ref=e579]: "151"
+        - button "index 152, Thymine, idle" [ref=e580] [cursor=pointer]:
+          - generic [ref=e581]: T
+          - generic [ref=e582]: "152"
+        - button "index 153, Thymine, idle" [ref=e583] [cursor=pointer]:
+          - generic [ref=e584]: T
+          - generic [ref=e585]: "153"
+        - button "index 154, Guanine, idle" [ref=e586] [cursor=pointer]:
+          - generic [ref=e587]: G
+          - generic [ref=e588]: "154"
+        - button "index 155, Thymine, idle" [ref=e589] [cursor=pointer]:
+          - generic [ref=e590]: T
+          - generic [ref=e591]: "155"
+        - button "index 156, Cytosine, idle" [ref=e592] [cursor=pointer]:
+          - generic [ref=e593]: C
+          - generic [ref=e594]: "156"
+        - button "index 157, Guanine, idle" [ref=e595] [cursor=pointer]:
+          - generic [ref=e596]: G
+          - generic [ref=e597]: "157"
+        - button "index 158, Thymine, idle" [ref=e598] [cursor=pointer]:
+          - generic [ref=e599]: T
+          - generic [ref=e600]: "158"
+        - button "index 159, Guanine, idle" [ref=e601] [cursor=pointer]:
+          - generic [ref=e602]: G
+          - generic [ref=e603]: "159"
+    - generic [ref=e604]:
+      - generic [ref=e605]:
+        - generic [ref=e606]: Found
+        - generic [ref=e608]: Hint
+        - generic [ref=e610]: Miss
+      - paragraph [ref=e612]:
+        - text: Found indices
+        - strong [ref=e613]: —
+  - generic [ref=e614]:
+    - generic [ref=e615]: TCA Finder · Genome Pattern Lab
+    - generic [ref=e616]:
+      - text: Data powered by
+      - link "Ensembl REST API" [ref=e617] [cursor=pointer]:
+        - /url: https://rest.ensembl.org
