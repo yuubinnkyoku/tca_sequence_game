@@ -300,30 +300,25 @@ export function App() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="TCA Finder home">
+        <div className="brand" aria-label="TCA Finder home">
           <span className="brand-mark"><Icon name="dna" /></span>
           <span><strong>TCA Finder</strong><small>Genome pattern lab</small></span>
-        </a>
+        </div>
         <div className="topbar-meta">
           <button className="sound-toggle" onClick={toggleSound} aria-label={soundEnabled ? '効果音をミュート' : '効果音をオン'} aria-pressed={soundEnabled} title={soundEnabled ? 'Sound on' : 'Sound off'}><Icon name={soundEnabled ? 'sound' : 'mute'} /></button>
           <div className="best-score"><span>Personal best</span><strong>{bestScore.toLocaleString()}</strong></div>
         </div>
       </header>
 
-      <section className="hero" id="top">
-        <div className="hero-copy">
-          <p className="eyebrow"><span /> Sequence challenge · 01</p>
-          <h1>Find the pattern.<br /><em>Read the code.</em></h1>
-          <p className="lead">DNA 配列に隠れた <code>TCA</code> を見つける、短くて奥深いパターン探索ゲーム。</p>
-        </div>
-        <div className="target-card" aria-label="target pattern">
-          <div className="target-card-head"><span>Target motif</span><span className="live-dot">LIVE</span></div>
-          <div className="motif" aria-label="T C A"><span className="base-t">T</span><i>→</i><span className="base-c">C</span><i>→</i><span className="base-a">A</span></div>
-          <p>先頭の <strong>T</strong> をクリック</p>
+      <section className="play-header" aria-label="遊び方">
+        <p className="rule">DNA配列に隠れた <code>TCA</code> の先頭 <strong>T</strong> をクリック — 全部見つければクリア</p>
+        <div className="target-inline" aria-label="target pattern">
+          <span className="target-label">Target</span>
+          <span className="motif-inline" aria-label="T C A"><b className="base-t">T</b><i>→</i><b className="base-c">C</b><i>→</i><b className="base-a">A</b></span>
         </div>
       </section>
 
-      <section className="control-deck" aria-label="game settings">
+      <section className="control-deck" aria-label="game controls">
         <div className="difficulty-picker">
           <span className="control-label">Difficulty</span>
           <div className="segmented">
@@ -335,8 +330,11 @@ export function App() {
           </div>
         </div>
         <div className="actions">
-          <button className="button ghost" onClick={() => setShowCustom((value) => !value)}><Icon name="upload" />配列を入力</button>
           <button className="button primary" onClick={loadRealSequence} disabled={isLoading}><Icon name="spark" />{isLoading ? 'Loading…' : '実ゲノムで開始'}</button>
+          <button className="button ghost" onClick={() => setShowCustom((value) => !value)} aria-expanded={showCustom}><Icon name="upload" />配列を入力</button>
+          <span className="action-divider" aria-hidden="true" />
+          <button className="tool-button" onClick={revealHint} disabled={status !== 'playing'} title="ヒント (H)"><Icon name="hint" /><span>Hint</span><kbd>H</kbd></button>
+          <button className="tool-button" onClick={() => startTraining()} title="リセット (R)"><Icon name="refresh" /><span>Reset</span><kbd>R</kbd></button>
         </div>
       </section>
 
@@ -351,21 +349,16 @@ export function App() {
       <section className="game-board">
         <div className="game-toolbar">
           <div className="round-state"><span className={`status-orb ${status}`} /><div><span>{source}</span><strong>{region}</strong></div></div>
-          <div className="toolbar-actions">
-            <button onClick={revealHint} disabled={status !== 'playing'} title="ヒント (H)"><Icon name="hint" /><span>Hint</span><kbd>H</kbd></button>
-            <button onClick={() => startTraining()} title="リセット (R)"><Icon name="refresh" /><span>Reset</span><kbd>R</kbd></button>
-          </div>
+          <p className="round-sub">連続 ×{streak}（最高 ×{bestStreak}） · {formatTime(elapsed)} · {sequence.length} bp</p>
         </div>
 
         <div className="stat-grid" aria-label="game status">
           <div className="stat score-stat"><span>Score</span><strong>{score.toLocaleString()}</strong><small>+{config.points} / hit</small></div>
-          <div className="stat"><span>Progress</span><strong>{hits.length}<small> / {allPositions.length}</small></strong><div className="mini-progress"><i style={{ width: `${progress}%` }} /></div></div>
-          <div className="stat"><span>Streak</span><strong>×{streak}</strong><small>best ×{bestStreak}</small></div>
-          <div className="stat"><span>Time</span><strong>{formatTime(elapsed)}</strong><small>{sequence.length} base pairs</small></div>
+          <div className="stat"><span>残り</span><strong>{remaining}<small> / {allPositions.length}</small></strong><div className="mini-progress"><i style={{ width: `${progress}%` }} /></div></div>
           <div className="stat lives-stat"><span>Lives</span><div className="hearts" aria-label={`${lives} lives remaining`}>{Array.from({ length: config.lives }, (_, index) => <Icon key={index} name="heart" />).map((heart, index) => <span className={index >= lives ? 'lost' : ''} key={index}>{heart}</span>)}</div><small>{misses.length} misses</small></div>
         </div>
 
-        <div className={`message-bar ${status}`} role="status"><span><Icon name={status === 'cleared' ? 'spark' : status === 'failed' ? 'refresh' : 'dna'} /></span><p>{message}</p><strong>{progress}%</strong></div>
+        <div className={`message-bar ${status}`} role="status"><span><Icon name={status === 'cleared' ? 'spark' : status === 'failed' ? 'refresh' : 'dna'} /></span><p>{message}</p></div>
 
         <div className="sequence-wrap">
           <div className="sequence-ruler"><span>5′</span><i /><span>3′</span></div>
@@ -375,13 +368,14 @@ export function App() {
               const isStart = hits.includes(index);
               return (
                 <button
-                  className={`base-cell base-${base.toLowerCase()} ${cellState} ${isStart ? 'motif-start' : ''}`}
+                  className={`base-cell ${cellState}`}
                   key={`${base}-${index}`}
                   onClick={() => choosePosition(index)}
                   aria-label={`index ${index}, ${baseLabels[base]}, ${cellState}`}
                   disabled={status !== 'playing'}
+                  title={`index ${index}`}
                 >
-                  <span>{base}</span><small>{index}</small>{isStart && <b>TCA</b>}
+                  <span>{base}</span>{isStart && <b>TCA</b>}
                 </button>
               );
             })}
@@ -390,7 +384,7 @@ export function App() {
 
         <footer className="board-footer">
           <div className="legend"><span><i className="legend-hit" />Found</span><span><i className="legend-hint" />Hint</span><span><i className="legend-miss" />Miss</span></div>
-          <p>Found indices <strong>{hits.length ? hits.join(', ') : '—'}</strong></p>
+          <p>{sequence.length} bp · TCA × {allPositions.length}</p>
         </footer>
       </section>
 
