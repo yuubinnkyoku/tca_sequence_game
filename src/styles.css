@@ -30,6 +30,9 @@ button { color: inherit; }
 .brand > span:last-child { display: grid; }
 .brand strong { font-size: .92rem; letter-spacing: -.02em; }
 .brand small { color: var(--muted); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; }
+.topbar-meta { display: flex; gap: 18px; align-items: center; }
+.sound-toggle { display: grid; width: 34px; height: 34px; padding: 0; place-items: center; border: 1px solid var(--line); border-radius: 9px; color: var(--green); background: rgba(98,230,179,.045); cursor: pointer; transition: border-color .15s ease, transform .15s ease; }
+.sound-toggle:hover { border-color: rgba(98,230,179,.4); transform: translateY(-1px); }.sound-toggle[aria-pressed="false"] { color: var(--muted); background: transparent; }.sound-toggle .icon { width: 17px; }
 .best-score { display: flex; gap: 14px; align-items: baseline; }
 .best-score span, .control-label { color: var(--muted); font-size: .66rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .best-score strong { color: var(--yellow); font: 500 1rem 'DM Mono', monospace; }

@@ -4,6 +4,7 @@ type SequencePayload = { id: string; desc: string; seq: string };
 type CellState = 'found' | 'miss' | 'hint' | 'idle';
 type GameStatus = 'playing' | 'cleared' | 'failed';
 type DifficultyKey = 'starter' | 'standard' | 'expert';
+type SoundEffect = 'tap' | 'hit' | 'miss' | 'hint' | 'clear' | 'gameover';
 
 const difficulties = {
   starter: { label: 'Starter', length: 96, lives: 6, points: 100, description: '短い配列で練習' },
@@ -55,7 +56,37 @@ function formatTime(seconds: number) {
   return `${minutes}:${remainder}`;
 }
 
-function Icon({ name }: { name: 'dna' | 'spark' | 'refresh' | 'hint' | 'upload' | 'heart' }) {
+function playTone(context: AudioContext, frequency: number, startsIn: number, duration: number, type: OscillatorType, volume: number) {
+  const oscillator = context.createOscillator();
+  const gain = context.createGain();
+  const start = context.currentTime + startsIn;
+  oscillator.type = type;
+  oscillator.frequency.setValueAtTime(frequency, start);
+  oscillator.frequency.exponentialRampToValueAtTime(frequency * 1.015, start + duration);
+  gain.gain.setValueAtTime(0.0001, start);
+  gain.gain.exponentialRampToValueAtTime(volume, start + 0.008);
+  gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+  oscillator.connect(gain).connect(context.destination);
+  oscillator.start(start);
+  oscillator.stop(start + duration + 0.02);
+}
+
+function synthesizeEffect(context: AudioContext, effect: SoundEffect, intensity = 1) {
+  const recipes: Record<SoundEffect, Array<[number, number, number, OscillatorType, number]>> = {
+    tap: [[220, 0, 0.045, 'sine', 0.035]],
+    hint: [[740, 0, 0.08, 'sine', 0.045], [988, 0.07, 0.13, 'sine', 0.04]],
+    hit: [[523, 0, 0.09, 'triangle', 0.07], [659, 0.055, 0.11, 'sine', 0.065], [784, 0.11, 0.16, 'sine', 0.055]],
+    miss: [[145, 0, 0.16, 'sawtooth', 0.045], [92, 0.045, 0.22, 'square', 0.025]],
+    clear: [[523, 0, 0.12, 'triangle', 0.07], [659, 0.08, 0.12, 'triangle', 0.07], [784, 0.16, 0.14, 'triangle', 0.07], [1047, 0.25, 0.32, 'sine', 0.08], [1319, 0.31, 0.3, 'sine', 0.045]],
+    gameover: [[196, 0, 0.18, 'triangle', 0.055], [147, 0.14, 0.2, 'triangle', 0.05], [98, 0.29, 0.34, 'sawtooth', 0.025]],
+  };
+  recipes[effect].forEach(([frequency, start, duration, type, volume]) => {
+    const comboPitch = effect === 'hit' ? Math.min(1.5, 1 + (intensity - 1) * 0.08) : 1;
+    playTone(context, frequency * comboPitch, start, duration, type, volume);
+  });
+}
+
+function Icon({ name }: { name: 'dna' | 'spark' | 'refresh' | 'hint' | 'upload' | 'heart' | 'sound' | 'mute' }) {
   const paths = {
     dna: <><path d="M7 3c0 7 10 7 10 18M17 3c0 7-10 7-10 18"/><path d="M8.5 6h7M7.5 10h9M7.5 14h9M8.5 18h7"/></>,
     spark: <path d="m12 3 1.2 4.2L17 9l-3.8 1.8L12 15l-1.2-4.2L7 9l3.8-1.8L12 3Zm6 11 .7 2.3L21 17l-2.3.7L18 20l-.7-2.3L15 17l2.3-.7L18 14Z"/>,
@@ -63,6 +94,8 @@ function Icon({ name }: { name: 'dna' | 'spark' | 'refresh' | 'hint' | 'upload' 
     hint: <><path d="M9 18h6M10 22h4"/><path d="M8.1 14.5A7 7 0 1 1 16 14c-1.2.9-1 2-1 2H9s.2-1.1-.9-1.5Z"/></>,
     upload: <><path d="M12 16V4m0 0L7 9m5-5 5 5"/><path d="M5 15v5h14v-5"/></>,
     heart: <path d="M20.8 5.8a5.5 5.5 0 0 0-7.8 0L12 6.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 22l8.8-8.4a5.5 5.5 0 0 0 0-7.8Z"/>,
+    sound: <><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8.5 8.5 0 0 1 0 12"/></>,
+    mute: <><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 10 5 5m0-5-5 5"/></>,
   };
   return <svg aria-hidden="true" className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{paths[name]}</svg>;
 }
@@ -89,10 +122,32 @@ export function App() {
   const [customInput, setCustomInput] = useState('');
   const [customError, setCustomError] = useState('');
   const [bestScore, setBestScore] = useState(() => Number(localStorage.getItem('tca-best-score') ?? 0));
+  const [soundEnabled, setSoundEnabled] = useState(() => localStorage.getItem('tca-sound') !== 'off');
+  const audioContext = useRef<AudioContext | null>(null);
 
   const allPositions = useMemo(() => findTcaPositions(sequence), [sequence]);
   const remaining = allPositions.length - hits.length;
   const progress = allPositions.length === 0 ? 0 : Math.round((hits.length / allPositions.length) * 100);
+
+  const playSound = useCallback((effect: SoundEffect, intensity = 1) => {
+    if (!soundEnabled) return;
+    const context = audioContext.current ?? new AudioContext();
+    audioContext.current = context;
+    if (context.state === 'suspended') void context.resume();
+    synthesizeEffect(context, effect, intensity);
+  }, [soundEnabled]);
+
+  const toggleSound = () => {
+    const next = !soundEnabled;
+    setSoundEnabled(next);
+    localStorage.setItem('tca-sound', next ? 'on' : 'off');
+    if (next) {
+      const context = audioContext.current ?? new AudioContext();
+      audioContext.current = context;
+      if (context.state === 'suspended') void context.resume();
+      synthesizeEffect(context, 'hint');
+    }
+  };
 
   useEffect(() => {
     if (status !== 'playing') return undefined;
@@ -130,6 +185,7 @@ export function App() {
   }, [difficulty, startRound]);
 
   const selectDifficulty = (nextDifficulty: DifficultyKey) => {
+    playSound('tap');
     setDifficulty(nextDifficulty);
     startTraining(nextDifficulty);
   };
@@ -161,11 +217,12 @@ export function App() {
     if (status !== 'playing') return;
     const next = allPositions.find((position) => !hits.includes(position));
     if (next === undefined) return;
+    playSound('hint');
     setActiveHint(next);
     setScore((value) => Math.max(0, value - 75));
     setStreak(0);
     setMessage(`ヒント：index ${next} 付近が反応しています`);
-  }, [allPositions, hits, status]);
+  }, [allPositions, hits, playSound, status]);
 
   const choosePosition = (index: number) => {
     if (status !== 'playing') return;
@@ -183,9 +240,11 @@ export function App() {
       setBestStreak((value) => Math.max(value, nextStreak));
       setScore((value) => value + earned);
       if (nextHits.length === allPositions.length) {
+        playSound('clear');
         setStatus('cleared');
         setMessage('解析完了 — すべての TCA を発見しました');
       } else {
+        playSound('hit', nextStreak);
         setMessage(`HIT +${earned} — 残り ${allPositions.length - nextHits.length} ヵ所`);
       }
       return;
@@ -200,9 +259,11 @@ export function App() {
     setStreak(0);
     setScore((value) => Math.max(0, value - 20));
     if (nextLives <= 0) {
+      playSound('gameover');
       setStatus('failed');
       setMessage('解析失敗 — ライフを使い切りました');
     } else {
+      playSound('miss');
       setMessage(`MISS — あと ${nextLives} 回。3 塩基の並びを確認しよう`);
     }
   };
@@ -243,7 +304,10 @@ export function App() {
           <span className="brand-mark"><Icon name="dna" /></span>
           <span><strong>TCA Finder</strong><small>Genome pattern lab</small></span>
         </a>
-        <div className="best-score"><span>Personal best</span><strong>{bestScore.toLocaleString()}</strong></div>
+        <div className="topbar-meta">
+          <button className="sound-toggle" onClick={toggleSound} aria-label={soundEnabled ? '効果音をミュート' : '効果音をオン'} aria-pressed={soundEnabled} title={soundEnabled ? 'Sound on' : 'Sound off'}><Icon name={soundEnabled ? 'sound' : 'mute'} /></button>
+          <div className="best-score"><span>Personal best</span><strong>{bestScore.toLocaleString()}</strong></div>
+        </div>
       </header>
 
       <section className="hero" id="top">
